@@ -92,3 +92,65 @@ After running the script, you’ll see:
 - **"NA" in All Rows**: This means no matches were found. Verify the data in both files.
 
 ---
+
+## 🔄 **How to Use This Script with Other Excel Files in the Future**
+
+If you need to run this script with **new/different Excel files**, follow these simple steps:
+
+---
+
+### 📂 **1. Update File Paths & Sheet Names**
+
+Open the script in a text editor (like Notepad) and modify these lines:
+
+```python
+# Configuration - Update these values according to your needs
+PRIMARY_FILE_PATH = r'C:\NEW\PATH\TO\primary.xlsx'  # 🖋️ Change this to your new Primary file path
+PRIMARY_SHEET_NAME = 'Sheet1'                       # 🖋️ Update if the sheet name changes
+SECONDARY_FILE_PATH = r'C:\NEW\PATH\TO\secondary.xlsx'  # 🖋️ Change this to your new Secondary file path
+SECONDARY_SHEET_NAME = 'Sheet1'                     # 🖋️ Update if the sheet name changes
+```
+
+Replace the file paths (e.g., `C:\NEW\PATH\TO\...`) with the actual locations of your new Excel files.
+
+---
+
+### 🔢 **2. Check Column Positions (If Needed)**
+
+The script uses specific columns to match data:
+
+- **Primary File**: Columns **C (Item Name)**, **D (Color)**, **E (Opening Qty)**, **Q (Physical Count)**.
+- **Secondary File**: Columns **C (Item Name)**, **D (Color)**, **E (Opening Qty)**, **Q (Physical Count)**.
+
+⚠️ **If your new Excel files have columns in different positions**:
+
+1. Open the script and find these lines:
+   ```python
+   # For Primary File
+   usecols=[2, 3, 4, 16]  # C=2, D=3, E=4, Q=16
+   # For Secondary File
+   usecols=[2, 3, 4, 17]  # C=2, D=3, E=4, Q=17
+   ```
+2. Adjust the numbers to match the new column positions (e.g., column A=0, B=1, C=2, etc.).
+
+---
+
+### 📜 **3. Adjust Rows to Skip (If Headers Change)**
+
+If your new Excel files have headers in different rows, update these lines:
+
+```python
+# For Primary File
+skiprows=1,  # Skip the first 1 row (header starts at row 2)
+# For Secondary File
+skiprows=2,  # Skip the first 2 rows (header starts at row 3)
+```
+
+---
+
+### 🧪 **4. Test with New Files**
+
+1. **Backup your new Excel files** before running the script.
+2. Run the script and check the Secondary file to confirm updates.
+
+---
